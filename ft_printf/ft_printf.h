@@ -6,7 +6,7 @@
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:17:13 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/30 12:03:54 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:36:16 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <signal.h>
 
 int		ft_printf(const char *fmt, ...);
 int		fmt_conversion(va_list ap, const char fmt);
