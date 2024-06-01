@@ -6,23 +6,25 @@
 #    By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 15:22:34 by ayprokop          #+#    #+#              #
-#    Updated: 2024/06/01 18:26:17 by ayprokop         ###   ########.fr        #
+#    Updated: 2024/06/01 21:02:22 by ayprokop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAMES = server
+NAMEC = client
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 FLAGS = $(CFLAGS) -I ./ft_printf/ft_printf.h -L ./ft_printf -lftprintf
 
-all: server client
+all: $(NAMES) $(NAMEC)
 	
-server: server.o
+$(NAMES): server.o
 	make -s -C ft_printf
 	$(CC) $(FLAGS) -o server server.o
 server.o: server.c
 	$(CC) $(CFLAGS) -c server.c
 
-client: client.o
+$(NAMEC): client.o
 	make -s -C ft_printf
 	$(CC) $(FLAGS) -o client client.o
 client.o: client.c
