@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: ayprokop <ayprokop@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:33:46 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/06/01 19:29:38 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:00:28 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf/ft_printf.h"
+#include "minitalk.h"
 
 static int	ft_atoi(const char *str)
 {

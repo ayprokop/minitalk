@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putdigit.c                                      :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 11:19:54 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/30 12:03:51 by ayprokop         ###   ########.fr       */
+/*   Created: 2024/01/21 15:06:30 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/03/14 12:03:56 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putdigit(long long number, long base, int *count)
+int	ft_printf_hex(unsigned int n)
 {
-	char	*hex;
+	char	*str;
+	int		count;
 
-	hex = "0123456789abcdef";
-	if (number < 0)
-	{
-		number *= -1;
-		*count += write(1, "-", 1);
-	}
-	if (number >= base)
-		ft_putdigit((number / base), base, count);
-	*count += write(1, &hex[number % base], 1);
+	str = ft_hextoa(n);
+	count = ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	free(str);
+	return (count);
 }

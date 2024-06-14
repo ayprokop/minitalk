@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_hexcapital.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 08:09:18 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/28 18:39:58 by ayprokop         ###   ########.fr       */
+/*   Created: 2024/03/14 08:01:10 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/03/14 16:24:51 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(char *str)
+int	ft_toupper(int c)
 {
-	int	count;
+	if ((unsigned char)c >= 'a' && (unsigned char)c <= 'z')
+		return (c - 32);
+	return (c);
+}
 
-	count = 0;
-	if (!str)
-		return (ft_putstr("(null)"));
-	while (*str)
-		count += ft_putchar(*str++);
+int	ft_printf_hexcapital(unsigned int n)
+{
+	char	*str;
+	int		count;
+	int		i;
+
+	str = ft_hextoa(n);
+	i = 0;
+	while (str[i])
+	{
+		str[i] = (char)ft_toupper(str[i]);
+		i++;
+	}
+	count = ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	free(str);
 	return (count);
 }

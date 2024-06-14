@@ -5,26 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/01 16:04:47 by ayprokop          #+#    #+#              #
-#    Updated: 2023/09/15 12:47:40 by ayprokop         ###   ########.fr        #
+#    Created: 2023/12/02 15:18:48 by ayprokop          #+#    #+#              #
+#    Updated: 2024/03/14 16:57:32 by ayprokop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-SRC = ft_printf.c ft_putaddr.c ft_putchar.c ft_putdigit_hexcap.c \
-		ft_putdigit.c ft_putstr.c ft_putdigit_hex.c
+#マクロ定義
 
-OBJ = $(SRC:.c=.o)
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-LIB = ar rcs
+NAME = libftprintf.a
+
+CC = cc
+
+CFLAGS = -Werror -Wextra -Wall
+
 RM = rm -f
 
-all: $(NAME)
-$(NAME): $(OBJ)
-	$(LIB) $(NAME) $(OBJ)
-clean:
-	$(RM) $(OBJ)
-fclean: clean
+SRC = ft_printf_char.c ft_printf_str.c ft_printf_deci.c ft_printf_unsigned.c \
+		ft_printf_hex.c ft_printf.c ft_utoa.c ft_hextoa.c \
+		ft_printf_hexcapital.c ft_printf_addr.c ft_addrtoa.c \
+		libft_src.c \
+
+OBJS = $(SRC:.c=.o)
+
+#生成規則
+
+all : $(NAME)
+
+$(NAME) : $(OBJS)
+	ar rc $(NAME) $(OBJS)
+
+clean :
+	$(RM) $(OBJS)
+
+fclean : clean
 	$(RM) $(NAME)
-re: fclean all
+	
+re : fclean all
+
+.PHONY : all clean fclean re

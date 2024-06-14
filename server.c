@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: ayprokop <ayprokop@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:39:17 by ayprokop          #+#    #+#             */
-/*   Updated: 2024/06/01 19:12:24 by ayprokop         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:24:45 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf/ft_printf.h"
+#include "minitalk.h"
 
 void	ft_signal_handler(int signum)
 {

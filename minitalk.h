@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: ayprokop <ayprokop@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 08:08:46 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/28 18:12:31 by ayprokop         ###   ########.fr       */
+/*   Created: 2024/06/05 10:17:25 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/06/05 10:58:36 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-int	ft_putchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+# include <signal.h>
+# include "./ft_printf/ft_printf.h"
+
+#endif

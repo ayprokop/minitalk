@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putdigit_hexcap.c                               :+:      :+:    :+:   */
+/*   ft_printf_deci.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 11:19:54 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/29 16:09:28 by ayprokop         ###   ########.fr       */
+/*   Created: 2024/01/21 14:52:14 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/01/26 17:03:57 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putdigit_hexcap(unsigned int number, unsigned int base, int *count)
+int	ft_printf_deci(int n)
 {
-	char	*hexcap;
+	char	*str;
+	int		count;
 
-	hexcap = "0123456789ABCDEF";
-	if (number < 0)
-	{
-		number *= -1;
-		*count += write(1, "-", 1);
-	}
-	if (number >= base)
-		ft_putdigit_hexcap((number / base), base, count);
-	*count += write(1, &hexcap[number % base], 1);
+	str = ft_itoa(n);
+	count = ft_strlen(str);
+	ft_putstr_fd(str, 1);
+	free(str);
+	return (count);
 }

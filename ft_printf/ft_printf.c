@@ -5,83 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 11:22:17 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/29 15:54:14 by ayprokop         ###   ########.fr       */
+/*   Created: 2023/12/27 18:39:32 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/03/14 12:52:21 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// printf() 
-// - argument processing 1) format strings 2) arguments("xxx") 3) error
-// - format conversion
-// - returns the character counts
-// "const char*" is a mutable pointer to an immutable
-// character/string. You cannot change the contents
-// of the location(s) this pointer points to.
-
 #include "ft_printf.h"
 
-char	fmt_specifier(char fmt)
-{
-	char	*specifier;
-
-	specifier = "cspdiuxX%";
-	while (*specifier)
-	{
-		if (fmt == *specifier)
-			return (*specifier);
-		specifier++;
-	}
-	return (0);
-}
-
-int	fmt_conversion(va_list ap, char specifier)
+int	ft_getarg(va_list *ap, const char type)
 {
 	int	count;
 
 	count = 0;
-	if (specifier == '%')
-		count += ft_putchar('%');
-	if (specifier == 'c')
-		count += ft_putchar(va_arg(ap, int));
-	if (specifier == 's')
-		count += ft_putstr(va_arg(ap, char *));
-	if (specifier == 'p')
-		count += ft_putaddr(va_arg(ap, unsigned long));
-	if (specifier == 'd' || specifier == 'i')
-		ft_putdigit((long long)va_arg(ap, int), 10, &count);
-	if (specifier == 'x')
-		ft_putdigit_hex((unsigned long)va_arg(ap, int), 16, &count);
-	if (specifier == 'X')
-		ft_putdigit_hexcap((unsigned int)va_arg(ap, int), 16, &count);
-	if (specifier == 'u')
-		ft_putdigit_hex((unsigned long)va_arg(ap, int), 10, &count);
+	if (type == '%')
+		count += ft_printf_char('%');
+	else if (type == 'c')
+		count += ft_printf_char(va_arg(*ap, int));
+	else if (type == 's')
+		count += ft_printf_str(va_arg(*ap, char *));
+	else if (type == 'd' || type == 'i')
+		count += ft_printf_deci(va_arg(*ap, int));
+	else if (type == 'u')
+		count += ft_printf_unsigned(va_arg(*ap, unsigned int));
+	else if (type == 'x')
+		count += ft_printf_hex(va_arg(*ap, unsigned int));
+	else if (type == 'X')
+		count += ft_printf_hexcapital(va_arg(*ap, unsigned int));
+	else if (type == 'p')
+		count += ft_printf_addr(va_arg(*ap, unsigned long));
 	return (count);
 }
 
-int	ft_printf(const char *fmt, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
+	int		i;
 	int		count;
 
-	va_start(ap, fmt);
+	va_start(ap, format);
+	i = 0;
 	count = 0;
-	while (*fmt)
+	while (format[i] != '\0')
 	{
-		if (*fmt != '%')
-			count += write(1, fmt, 1);
-		else if (*fmt == '%' && fmt_specifier(*(fmt + 1)))
-			count += fmt_conversion(ap, *(fmt++ + 1));
-		else if (*fmt == '%' && !fmt_specifier(*(fmt + 1)))
-			break ;
-		fmt++;
+		if (format[i] == '%')
+		{
+			i++;
+			count += ft_getarg(&ap, format[i]);
+			i++;
+		}
+		else
+		{
+			ft_putchar_fd(format[i], 1);
+			count++;
+			i++;
+		}
 	}
 	va_end(ap);
 	return (count);
 }
 
-/* #include <stdio.h>
-int	main(void)
-{
-	printf("%d\n", printf(" %d ", -2147483648));
-	printf("%d\n", ft_printf(" %d ", -2147483648));
-} */
+// int	main(void)
+// {
+// 	printf("\001\002\007\v\010\f\r\n"):
+// 	return (0);
+// }

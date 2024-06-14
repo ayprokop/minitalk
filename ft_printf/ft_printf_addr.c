@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putdigit_hex.c                                  :+:      :+:    :+:   */
+/*   ft_printf_addr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayprokop <ayprokop@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 11:19:54 by ayprokop          #+#    #+#             */
-/*   Updated: 2023/03/29 14:48:23 by ayprokop         ###   ########.fr       */
+/*   Created: 2024/01/21 15:06:30 by ayprokop          #+#    #+#             */
+/*   Updated: 2024/03/14 12:47:12 by ayprokop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putdigit_hex(unsigned int number, unsigned int base, int *count)
+int	ft_printf_addr(unsigned long n)
 {
-	char	*hex;
+	char	*str;
+	int		count;
 
-	hex = "0123456789abcdef";
-	if (number < 0)
+	str = ft_addrtoa(n);
+	count = ft_strlen(str);
+	if (n == 0)
 	{
-		number *= -1;
-		*count += write(1, "-", 1);
+		ft_putstr_fd("0x0", 1);
+		free(str);
+		return (3);
 	}
-	if (number >= base)
-		ft_putdigit_hex((number / base), base, count);
-	*count += write(1, &hex[number % base], 1);
+	else
+	{
+		ft_putstr_fd("0x", 1);
+		count += 2;
+	}
+	ft_putstr_fd(str, 1);
+	free(str);
+	return (count);
 }
